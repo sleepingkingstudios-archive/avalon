@@ -1,6 +1,7 @@
 # spec/views/directories/new_spec.rb
 
 require 'spec_helper'
+require 'views/directories/form_examples'
 
 describe 'directories/new' do
   let :directory do Directory.new attributes; end
@@ -13,14 +14,13 @@ describe 'directories/new' do
   
   context 'with no attributes' do
     let :attributes do {}; end
-    let :form do page.find("form#new_directory_#{directory.id}"); end
     
-    specify 'has the create directory form' do
-      expect(rendered).to have_selector "form#new_directory_#{directory.id}"
-    end # specify
+    it_behaves_like :directory_form
+  end # context
+  
+  context 'with defined attributes' do
+    let :attributes do FactoryGirl.attributes_for :directory; end
     
-    specify { expect(form).to have_button 'Create Directory' }
-    
-    specify { expect(form).to have_field 'directory_title', :with => attributes[:title] }
+    it_behaves_like :directory_form
   end # context
 end # describe
