@@ -1,0 +1,33 @@
+-# app/views/directories/index.html.haml
+
+- directory ||= @directory
+- directory_path = (directory ? directory.path : '') + '/'
+
+%section
+  %h1= directory ? directory.title : "Root Directory"
+  
+  - unless directory.nil?
+    %h2 Parent Directory
+
+    - parent = directory.parent
+    - if parent.nil?
+      %p= link_to "Root Directory", "/directories"
+    - else
+      %p= link_to parent.title, "#{parent.path}/directories"
+  
+  %h2 Child Directories
+  %p=link_to "Create Directory", "#{directory_path}directories/new"
+  
+  - children = directory.nil? ? Directory.where(:parent => nil) : directory.children
+  - if children.empty?
+    %p There are no child directories.
+  - else
+    %table
+      %thead
+        %tr
+          %th Title
+      %tbody
+      - children.each do |child|
+        %tr
+          %td= link_to child.title, "#{child.path}/directories"
+

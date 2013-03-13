@@ -1,0 +1,22 @@
+!!! 5
+%html
+  %head
+    %title Sleeping King Studios
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  
+  %body
+    / %header
+    %header
+      %h1 Sleeping King Studios
+      %nav
+        %h2
+          = link_to 'Home', '/'
+          = link_to 'Root', '/directories'
+    
+    = yield
+    
+    %footer
+      = yield :breadcrumbs
+      %p Hic Iacet Arthurus, Rex Quondam, Rexque Futuris

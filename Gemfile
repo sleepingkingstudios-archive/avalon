@@ -28,4 +28,8 @@ group :test do
   gem 'capybara'
   gem 'factory_girl'
   gem 'database_cleaner'
+  
+  path '../rspec-sleeping_king_studios' do
+    gem 'rspec-sleeping_king_studios'
+  end # path
 end # group
