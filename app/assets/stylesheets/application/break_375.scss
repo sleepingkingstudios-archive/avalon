@@ -1,0 +1,22 @@
+// app/assets/stylesheets/mobile/break_375.scss
+
+$break-375-size-base:       18;
+$break-375-size-multiplier: 0.6667;
+$break-375-sizes:
+  tera    round($break-375-size-base * (1.0 + 3.5  * (3.5 + $break-375-size-multiplier))),
+  giga    round($break-375-size-base * (1.0 + 2.0  * (3.5 + $break-375-size-multiplier))),
+  mega    round($break-375-size-base * (1.0 + 1.0  * (3.5 + $break-375-size-multiplier))),
+  alpha   round($break-375-size-base * (1.0 + 3.5  * $break-375-size-multiplier)),
+  beta    round($break-375-size-base * (1.0 + 2.5  * $break-375-size-multiplier)),
+  gamma   round($break-375-size-base * (1.0 + 1.5  * $break-375-size-multiplier)),
+  delta   round($break-375-size-base * (1.0 + 0.5  * $break-375-size-multiplier)),
+  epsilon round($break-375-size-base * (1.0 + 0.25 * $break-375-size-multiplier)),
+  zeta    $break-375-size-base;
+
+@media only screen and (min-width : 37.5em) {
+  @each $size in $break-375-sizes {
+    .#{nth($size, 1)} {
+      @include modular-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+    } // .#{greek}
+  } // end each
+} // end @media

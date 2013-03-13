@@ -1,0 +1,82 @@
+// app/assets/stylesheets/mobile/text.scss
+
+// ============================================================================
+// TYPEPLATE STYLING
+// ============================================================================
+
+$mobile-size-base:       18;
+$mobile-size-multiplier: 0.25;
+$mobile-sizes:
+  tera    round($mobile-size-base * (1.0 + 3.5  * (3.5 + $mobile-size-multiplier))),
+  giga    round($mobile-size-base * (1.0 + 2.0  * (3.5 + $mobile-size-multiplier))),
+  mega    round($mobile-size-base * (1.0 + 1.0  * (3.5 + $mobile-size-multiplier))),
+  alpha   round($mobile-size-base * (1.0 + 3.5  * $mobile-size-multiplier)),
+  beta    round($mobile-size-base * (1.0 + 2.5  * $mobile-size-multiplier)),
+  gamma   round($mobile-size-base * (1.0 + 1.5  * $mobile-size-multiplier)),
+  delta   round($mobile-size-base * (1.0 + 0.5  * $mobile-size-multiplier)),
+  epsilon round($mobile-size-base * (1.0 + 0.25 * $mobile-size-multiplier)),
+  zeta    $mobile-size-base;
+
+// GLOBALS
+// ----------------------------------------------------------------------------
+
+html {
+  @include base-type($font-properties...);
+} // html
+
+body {
+  @include css-hyphens(auto);
+
+  // normal: Indicates that lines may only break at normal word break points.
+  // break-word : Indicates that normally unbreakable words may be broken at ...
+  // arbitrary points if there are no otherwise acceptable break points in the line.
+  @extend %breakword;
+  color: $body-copy-color;
+} // body
+
+// HEADINGS
+// ----------------------------------------------------------------------------
+
+%hN {
+  text-rendering: optimizeLegibility; // voodoo to enable ligatures and kerning
+  line-height: 1; // this fixes huge spaces when a heading wraps onto two lines
+  margin-top: 0;
+} // %hN
+
+// for each size in the scale, create a class
+@each $size in $mobile-sizes {
+  .#{nth($size, 1)} {
+    @include modular-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+  } // .#{greek}
+} // end each
+
+// associate h1-h6 tags with their appropriate greek heading
+h1 {
+  @extend .alpha;
+  @extend %hN;
+} // h1
+
+h2 {
+  @extend .beta;
+   @extend %hN;
+} // h2
+
+h3 {
+  @extend .gamma;
+  @extend %hN;
+} // h3
+
+h4 {
+  @extend .delta;
+  @extend %hN;
+} // h4
+
+h5 {
+  @extend .epsilon;
+  @extend %hN;
+} // h5
+
+h6 {
+  @extend .zeta;
+  @extend %hN;
+} // h6

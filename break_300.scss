@@ -1,0 +1,22 @@
+// app/assets/stylesheets/mobile/break_300.scss
+
+$break-300-size-base:       18;
+$break-300-size-multiplier: 0.6667;
+$break-300-sizes:
+  tera    round($break-300-size-base * (1.0 + 3.5  * (3.5 + $break-300-size-multiplier))),
+  giga    round($break-300-size-base * (1.0 + 2.0  * (3.5 + $break-300-size-multiplier))),
+  mega    round($break-300-size-base * (1.0 + 1.0  * (3.5 + $break-300-size-multiplier))),
+  alpha   round($break-300-size-base * (1.0 + 3.5  * $break-300-size-multiplier)),
+  beta    round($break-300-size-base * (1.0 + 2.5  * $break-300-size-multiplier)),
+  gamma   round($break-300-size-base * (1.0 + 1.5  * $break-300-size-multiplier)),
+  delta   round($break-300-size-base * (1.0 + 0.5  * $break-300-size-multiplier)),
+  epsilon round($break-300-size-base * (1.0 + 0.25 * $break-300-size-multiplier)),
+  zeta    $break-300-size-base;
+
+@media only screen and (min-width : 30em) {
+  @each $size in $break-300-sizes {
+    .#{nth($size, 1)} {
+      @include modular-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+    } // .#{greek}
+  } // end each
+} // end @media

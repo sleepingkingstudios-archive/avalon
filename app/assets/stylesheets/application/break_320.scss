@@ -1,0 +1,33 @@
+// app/assets/stylesheets/mobile/break_320.scss
+
+$break-320-size-base:       18;
+$break-320-size-multiplier: 0.5;
+$break-320-sizes:
+  tera    round($break-320-size-base * (1.0 + 3.5  * (3.5 + $break-320-size-multiplier))),
+  giga    round($break-320-size-base * (1.0 + 2.0  * (3.5 + $break-320-size-multiplier))),
+  mega    round($break-320-size-base * (1.0 + 1.0  * (3.5 + $break-320-size-multiplier))),
+  alpha   round($break-320-size-base * (1.0 + 3.5  * $break-320-size-multiplier)),
+  beta    round($break-320-size-base * (1.0 + 2.5  * $break-320-size-multiplier)),
+  gamma   round($break-320-size-base * (1.0 + 1.5  * $break-320-size-multiplier)),
+  delta   round($break-320-size-base * (1.0 + 0.5  * $break-320-size-multiplier)),
+  epsilon round($break-320-size-base * (1.0 + 0.25 * $break-320-size-multiplier)),
+  zeta    $break-320-size-base;
+
+@media only screen and (min-width : 32em) {
+  // LAYOUT
+  // --------------------------------------------------------------------------
+  
+  body > header > nav ul li {
+    &:before { content: "* "; }
+    &:first-child:before { content: ''; }
+  } // ... ul li
+  
+  // TEXT
+  // --------------------------------------------------------------------------
+  
+  @each $size in $break-320-sizes {
+    .#{nth($size, 1)} {
+      @include modular-scale(nth($size, 2), $font-base, '#{$type-scale-unit-value}', $measure);
+    } // .#{greek}
+  } // end each
+} // end @media

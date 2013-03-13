@@ -11,11 +11,15 @@
     %header
       %h1 Sleeping King Studios
       %nav
-        %h2
-          = link_to 'Home', '/'
-          = link_to 'Root', '/directories'
+        %ul
+          %li= link_to 'Home', '/directories'
+          %li Articles
+          %li Projects
+          %li Blog
+          %li= link_to 'About', :root
     
-    = yield
+    #content
+      = yield
     
     %footer
       = yield :breadcrumbs
