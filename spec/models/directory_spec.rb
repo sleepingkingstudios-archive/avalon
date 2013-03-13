@@ -22,6 +22,22 @@ describe Directory do
       specify { expect(instance).to have_errors.on(:slug).
         with_message("can't be blank") }
     end # describe
+    
+    describe 'slug must be unique in scope' do
+      before :each do FactoryGirl.create :directory, attributes; end
+      
+      specify { expect(instance).to have_errors.on(:slug).
+        with_message("is already taken") }
+    end # describe
+    
+    describe 'can share slug with directory in other namespace' do
+      before :each do
+        parent = FactoryGirl.create :directory
+        parent.children.create attributes
+      end # before :each
+      
+      specify { expect(instance).not_to have_errors }
+    end # describe
   end # describe
   
   specify { expect(instance).to have_accessor(:title).with(attributes[:title]) }

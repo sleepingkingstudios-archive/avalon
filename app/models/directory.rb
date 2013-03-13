@@ -9,7 +9,7 @@ class Directory
   has_many :children, :class_name => "Directory", :inverse_of => :parent
   
   validates :title, :presence => true
-  validates :slug,  :presence => true
+  validates :slug,  :presence => true, :uniqueness => { :scope => :parent }
   
   before_validation do |record|
     self[:slug] = slugify(record.title)
