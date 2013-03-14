@@ -38,7 +38,8 @@ describe 'directories/index' do
           children.each do |child|
             update_directory_path = "#{child.path}/edit"
             expect(rendered).to have_text child.title
-            expect(rendered).to have_link "Update", :href => update_directory_path
+            expect(rendered).to have_link "Update",  :href => update_directory_path
+            expect(rendered).to have_link "Destroy", :href => child.path
           end # each
         end # if-else
       end # specify

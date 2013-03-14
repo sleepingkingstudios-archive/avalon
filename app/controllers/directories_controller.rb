@@ -35,6 +35,7 @@ class DirectoriesController < ApplicationController
     @directory = find_directory params[:path]
   end # action edit
   
+  # PUT /:path
   def update
     @directory = find_directory params[:path]
     logger.debug "path = #{params[:path]}, directory = #{@directory.inspect}"
@@ -44,6 +45,15 @@ class DirectoriesController < ApplicationController
       render :edit
     end # if-else
   end # method update
+  
+  # DELETE /:path
+  def destroy
+    @directory = find_directory params[:path]
+    @parent    = @directory.parent
+    @directory.destroy
+    
+    redirect_to @parent ? @parent.path : :root
+  end # method destroy
   
   def find_directory path
     return nil if path.nil?

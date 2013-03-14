@@ -29,6 +29,7 @@
           %tr
             %th Title
             %th &nbsp;
+            %th &nbsp;
         %tbody
         - children.each do |child|
           %tr
@@ -36,4 +37,8 @@
             %td= link_to "Update", "#{child.path}/edit",
               :class => "edit-directory-link",
               :id => "edit-directory-#{child.slug}-link"
+            %td= link_to "Destroy", "#{child.path}",
+              :method => :delete,
+              :class => "destroy-directory-link",
+              :id => "destroy-directory-#{child.slug}-link"
 
