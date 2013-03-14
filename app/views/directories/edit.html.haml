@@ -1,0 +1,11 @@
+-# app/views/directories/edit.html.haml
+
+- directory ||= @directory
+
+%section
+  %h3 Edit Directory
+  
+  = action_form_for directory, :update, :url => "#{directory.path}" do |form|
+    = render "fields"
+    %p
+      = form.submit "Update Directory"

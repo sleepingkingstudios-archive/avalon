@@ -30,6 +30,21 @@ class DirectoriesController < ApplicationController
     end # if-else
   end # action create
   
+  # GET (/:path)/edit
+  def edit
+    @directory = find_directory params[:path]
+  end # action edit
+  
+  def update
+    @directory = find_directory params[:path]
+    logger.debug "path = #{params[:path]}, directory = #{@directory.inspect}"
+    if @directory.update_attributes params[:directory]
+      redirect_to @directory.path
+    else
+      render :edit
+    end # if-else
+  end # method update
+  
   def find_directory path
     return nil if path.nil?
     

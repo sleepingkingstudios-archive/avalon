@@ -6,11 +6,9 @@
 - parent_path = parent ? parent.path : ''
 
 %section
-  %h1 New Directory
+  %h3 New Directory
   
   = action_form_for directory, :create, :url => "#{parent_path}/directories" do |form|
-    %p
-      = form.label :title
-      = form.text_field :title
+    = render "fields"
     %p
       = form.submit "Create Directory"

@@ -1,0 +1,8 @@
+-# app/views/directories/_form.html.haml
+
+- directory ||= @directory
+
+= fields_for directory do |form|
+  %p
+    = form.label :title
+    = form.text_field :title

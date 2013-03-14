@@ -36,7 +36,9 @@ describe 'directories/index' do
           expect(rendered).to have_text "There are no child directories."
         else
           children.each do |child|
+            update_directory_path = "#{child.path}/edit"
             expect(rendered).to have_text child.title
+            expect(rendered).to have_link "Update", :href => update_directory_path
           end # each
         end # if-else
       end # specify
